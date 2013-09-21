@@ -1,4 +1,4 @@
-function imagesc(A::Matrix)
+function imagesc(A::AbstractMatrix)
     Ny, Nx = size(A)
 
     if Nx > 30

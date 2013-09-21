@@ -1,4 +1,6 @@
-function scatterplot(x::AbstractVector, y::AbstractVector; sym::Char = '^')
+function scatterplot(x::AbstractArray, y::AbstractArray; sym::Char = '^')
+    x, y = vec(x), vec(y)
+
     # Sanity checking
     N = length(x)
     if N != length(y)
@@ -79,4 +81,8 @@ function scatterplot(x::AbstractVector, y::AbstractVector; sym::Char = '^')
     print(io, "\n")
 
     return ASCIIPlot(bytestring(io))
+end
+
+function scatterplot(y::AbstractArray; sym::Char = '^')
+    scatterplot([1:length(y)], y, sym = sym)
 end

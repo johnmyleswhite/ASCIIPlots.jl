@@ -1,4 +1,6 @@
-function lineplot(x::Vector, y::Vector)
+function lineplot(x::AbstractArray, y::AbstractArray)
+    x, y = vec(x), vec(y)
+
     # Sanity checking
     N = length(x)
     if N != length(y)
@@ -94,3 +96,5 @@ function lineplot(x::Vector, y::Vector)
 
     return ASCIIPlot(bytestring(io))
 end
+
+lineplot(y::AbstractArray) = lineplot([1:length(y)], y)
