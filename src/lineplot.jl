@@ -16,14 +16,14 @@ function lineplot(x::AbstractArray, y::AbstractArray)
     y = y[ind]
 
     # Standarize data scale
-    minx = min(x)
-    maxx = max(x)
-    miny = min(y)
-    maxy = max(y)
+    minx = minimum(x)
+    maxx = maximum(x)
+    miny = minimum(y)
+    maxy = maximum(y)
     x = x - minx
-    x = x / max(x)
+    x = x / maximum(x)
     y = y - miny
-    y = y / max(y)
+    y = y / maximum(y)
 
     # Snap data points to a grid
     xi = ifloor(x * (res_x - 1)) + 1
