@@ -20,14 +20,14 @@ function lineplot(x::AbstractArray, y::AbstractArray)
     maxx = maximum(x)
     miny = minimum(y)
     maxy = maximum(y)
-    x = x - minx
+    x = x .- minx
     x = x / maximum(x)
-    y = y - miny
+    y = y .- miny
     y = y / maximum(y)
 
     # Snap data points to a grid
-    xi = ifloor(x * (res_x - 1)) + 1
-    yi = ifloor(y * (res_y - 1)) + 1
+    xi = ifloor(x * (res_x - 1)) .+ 1
+    yi = ifloor(y * (res_y - 1)) .+ 1
 
     # Compute slope and non-empty points
     dy = diff([y, 2 * y[end] - y[end - 1]]) ./
