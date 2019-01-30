@@ -26,12 +26,12 @@ function lineplot(x::AbstractArray, y::AbstractArray)
     y = y / maximum(y)
 
     # Snap data points to a grid
-    xi = floor(Integer, x * (res_x - 1)) .+ 1
-    yi = floor(Integer, y * (res_y - 1)) .+ 1
+    xi = floor.(Integer, x * (res_x - 1)) .+ 1
+    yi = floor.(Integer, y * (res_y - 1)) .+ 1
 
     # Compute slope and non-empty points
     dy = diff([y; 2 * y[end] - y[end - 1]]) ./
-           max(diff([x; 2 * x[end] - x[end - 1]]), 1 / N)
+        max.(diff([x; 2 * x[end] - x[end - 1]]), 1 / N)
     S = zeros(res_y, res_x)
     A = zeros(res_y, res_x)
     for i in 1:N
@@ -94,7 +94,7 @@ function lineplot(x::AbstractArray, y::AbstractArray)
     @printf io "%2.2f" maxx
     print(io, "\n")
 
-    return ASCIIPlot(bytestring(io))
+    return ASCIIPlot(String(take!(io)))
 end
 
-lineplot(y::AbstractArray) = lineplot([1:length(y)], y)
+lineplot(y::AbstractArray) = lineplot([1:length(y);], y)

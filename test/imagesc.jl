@@ -1,5 +1,5 @@
-using ASCIIPlots
-using Base.Test
+using ASCIIPlots, LinearAlgebra, Test
+eye(n) = Matrix{Float64}(I,n,n)
 
 A = eye(10)
 p = imagesc(A)

@@ -21,8 +21,8 @@ function scatterplot(x::AbstractArray, y::AbstractArray; sym::Char = '^')
     y = y / maximum(y)
 
     # Snap data points to a grid
-    xi = floor(Integer, x * (res_x - 1)) .+ 1
-    yi = floor(Integer, y * (res_y - 1)) .+ 1
+    xi = floor.(Integer, x * (res_x - 1)) .+ 1
+    yi = floor.(Integer, y * (res_y - 1)) .+ 1
 
     # Is there a point at location (i, j)?
     A = zeros(res_y, res_x)
@@ -80,9 +80,9 @@ function scatterplot(x::AbstractArray, y::AbstractArray; sym::Char = '^')
 
     print(io, "\n")
 
-    return ASCIIPlot(bytestring(io))
+    return ASCIIPlot(String(take!(io)))
 end
 
 function scatterplot(y::AbstractArray; sym::Char = '^')
-    scatterplot([1:length(y)], y, sym = sym)
+    scatterplot([1:length(y);], y, sym = sym)
 end
