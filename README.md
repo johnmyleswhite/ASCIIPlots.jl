@@ -1,6 +1,8 @@
 ASCIIPlots.jl
 =============
 
+**THIS PACKAGE IS ABANDONED. DO NOT USE IT.**
+
 Generate basic plots in Julia as ASCII art in the Julia REPL. This is based on code by Billou Bielour.
 
 # Usage Examples
